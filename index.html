@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+	<title>Menú</title>
+	<!-- Enlaces a bootstrap -->
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css"/>
+	<link rel="stylesheet" href="./lib/css/bootstrap-select.min.css"/>
+	<!-- Enlaces a jQuery -->
+	<script src="lib/js/jquery-3.1.1.min.js"></script>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<link rel="stylesheet" href="./lib/js/jquery-ui/jquery-ui.min.css"/>
+	<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/> -->
+	<script src="./lib/js/jquery-ui/jquery-ui.min.js"></script>
+	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+	<script src="./lib/js/ui/i18n/jquery.ui.datepicker-es.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/estilos.css"/>
+</head>
+<body>
+	<div id="mensajes">
+		<p id="pResultado"></p>
+	</div>
+	<a href="https://github.com/FranTALDE/CompraVentaVehiculosOcasion-2.0" target="_blank"><div id="portada"></div></a>
+	<div class="container">
+		<div id="principal">
+			<h1 class="heading">Menú</h1>
+			<form name="frmMenu">
+				<div class="col-xs-12 col-md-4">
+					<input type="button" name="btnGestionarEmpleados" id="gestionarEmpleados" class="boton btn btn-primary col-xs-offset-1 col-xs-12" value="Gestionar Empleados"/>
+				</div>
+				
+				<div class="col-xs-12 col-md-4">
+					<input type="button" name="btnGestionarProveedores" id="gestionarProveedores" class="boton btn btn-primary col-xs-offset-1 col-xs-12" value="Gestionar Proveedores"/>
+				</div>
+				
+				<div class="col-xs-12 col-md-4">
+					<input type="button" name="btnGestionarClientes" id="gestionarClientes" class="boton btn btn-primary col-xs-offset-1 col-xs-12" value="Gestionar Clientes"/>
+				</div>
+				
+				<div class="col-xs-12 col-md-4">
+					<input type="button" name="btnGestionarVehiculos" id="gestionarVehiculos" class="boton btn btn-primary col-xs-offset-1 col-xs-12" value="Gestionar Vehículos"/>
+				</div>
+				
+				<div class="col-xs-12 col-md-4">
+					<input type="button" name="btnGestionarCompraVenta" id="gestionarCompraVenta" class="boton btn btn-primary col-xs-offset-1 col-xs-12" value="Gestionar Compra / Venta"/>
+				</div>
+				
+				<div class="col-xs-12 col-md-4">
+					<input type="button" name="btnListados" id="listados" class="boton btn btn-primary col-xs-offset-1 col-xs-12" value="Listados"/>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!--##############################   FORMULARIOS    ##############################-->
+	<div id="contenedor_mensaje"></div>
+	<div id="formularios">
+		
+		<form class="form-horizontal" name="frmGestionarProveedores" id="frmGestionarProveedores">
+			<fieldset>
+				<!-- Form Name -->
+				<legend>Gestionar Proveedores</legend>
+
+				<!-- Multiple Radios (inline) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-4 col-md-4">
+						<label class="radio-inline">
+							<input type="radio" name="radioGestionProveedores" id="altaGestionProveedores" value="altaGestionProveedores" checked="checked">
+							Alta
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGestionProveedores" id="bajaGestionProveedores" value="bajaGestionProveedores">
+							Baja
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGestionProveedores" id="modificarGestionProveedores" value="modificarGestionProveedores">
+							Modificar
+						</label>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaIdProveedor">
+					<label class="col-xs-4 col-md-4 control-label" for="txtIdProveedor">ID Proveedor:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtIdProveedor" name="txtIdProveedor" type="text" placeholder="ID Proveedor" class="form-control input-md">
+						<span id="spanIdProveedor" class="help-block">Formato no valido. Debe tener este formato 28679345L</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaNombreProveedor">
+					<label class="col-xs-4 col-md-4 control-label" for="txtNombreProveedor">Nombre:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtNombreProveedor" name="txtNombreProveedor" type="text" placeholder="Nombre" class="form-control input-md">
+						<span id="spanNombreProveedor" class="help-block">Formato no valido. Debe contener 3 o más letras y empezar por mayúscula</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaApellidoProveedor">
+					<label class="col-xs-4 col-md-4 control-label" for="txtApellidoProveedor">Apellido:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtApellidoProveedor" name="txtApellidoProveedor" type="text" placeholder="Apellido" class="form-control input-md">
+						<span id="spanApellidoProveedor" class="help-block">Formato no valido. Debe contener 3 o más letras y empezar por mayúscula</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaTelefonoProveedor">
+					<label class="col-xs-4 col-md-4 control-label" for="textTelefonoProveedor">Teléfono:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="textTelefonoProveedor" name="textTelefonoProveedor" type="text" placeholder="Teléfono" class="form-control input-md">
+						<span id="spanTelefonoProveedor" class="help-block">Formato no valido. Debe contener 9 números y debe empezar por 9, 7 o 6</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaNombreEmpresaProveedor">
+					<label class="col-xs-4 col-md-4 control-label" for="txtNombreEmpresa">Nombre Empresa:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtNombreEmpresa" name="txtNombreEmpresa" type="text" placeholder="Nombre Empresa" class="form-control input-md">
+						<span id="spanNombreEmpresaProveedor" class="help-block">Formato no valido. El nombre debe empezar por mayúscula y puede acabar con las siglas S.L o S.A</span>
+					</div>
+				</div>
+
+				<!-- Button (Double) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-8 col-md-8">
+						<input type="button" id="aceptarProveedores" name="btnAceptarProveedores" value="Aceptar" class="btn btn-primary"/>
+						<input type="button" id="volver" name="btnVolverProveedor" value="Volver" class="btn btn-default"/>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<form class="form-horizontal" name="frmGestionarClientes" id="frmGestionarClientes">
+			<fieldset>
+				<!-- Form Name -->
+				<legend>Gestionar Clientes</legend>
+
+				<!-- Multiple Radios (inline) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-4 col-md-4">
+						<label class="radio-inline">
+							<input type="radio" name="radiosGestionClientes" id="altaGestionClientes" value="altaGestionClientes" checked="checked">
+							Alta
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radiosGestionClientes" id="bajaGestionClientes" value="bajaGestionClientes">
+							Baja
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radiosGestionClientes" id="modificarGestionClientes" value="modificarGestionClientes">
+							Modificar
+						</label>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaIdCliente">
+					<label class="col-xs-4 col-md-4 control-label" for="txtIdCliente">ID Cliente:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtIdCliente" name="txtIdCliente" type="text" placeholder="ID Cliente" class="form-control input-md">
+						<span id="spanIdCliente" class="help-block">Formato no valido. Debe tener este formato 28679345L</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaNombreCliente">
+					<label class="col-xs-4 col-md-4 control-label" for="txtNombre">Nombre:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtNombre" name="txtNombre" type="text" placeholder="Nombre" class="form-control input-md">
+						<span id="spanNombreCliente" class="help-block">Formato no valido. Debe contener 3 o más letras y empezar por mayúscula</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaApellidoCliente">
+					<label class="col-xs-4 col-md-4 control-label" for="txtApellido">Apellido:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtApellido" name="txtApellido" type="text" placeholder="Apellido" class="form-control input-md">
+						<span id="spanApellidoCliente" class="help-block">Formato no valido. Debe contener 3 o más letras y empezar por mayúscula</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaTelefonoCliente">
+					<label class="col-xs-4 col-md-4 control-label" for="textTelefono">Teléfono:</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="textTelefono" name="textTelefono" type="text" placeholder="Teléfono" class="form-control input-md">
+						<span id="spanTelefonoCliente" class="help-block">Formato no valido. Debe contener 9 números y debe empezar por 9, 7 o 6</span>
+					</div>
+				</div>
+
+				<!-- Button (Double) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-8 col-md-8">
+						<input type="button" id="aceptarClientes" name="btnAceptarCliente" value="Aceptar" class="btn btn-primary"/>
+						<input type="button" id="volver" name="btnVolverCliente" value="Volver" class="btn btn-default"/>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		
+		<form class="form-horizontal" name="frmGestionarVehiculos" id="frmGestionarVehiculos">
+			<fieldset>
+				<!-- Form Name -->
+				<legend>Gestión Vehículos</legend>
+
+				<!-- Multiple Radios (inline) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-4 col-md-4">
+						<label class="radio-inline">
+							<input type="radio" name="radioGestionVehiculos" id="altaGestionVehiculos" value="altaGestionVehiculos" checked="checked">
+							Alta
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGestionVehiculos" id="bajaGestionVehiculos" value="bajaGestionEmpleados">
+							Baja
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGestionVehiculos" id="modificarGestionVehiculos" value="modificarGestionEmpleados">
+							Modificar
+						</label>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaMatriculaVehiculo">
+					<label class="col-xs-4 col-md-4 control-label" for="txtMatricula">Matrícula</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtMatricula" name="txtMatricula" type="text" placeholder="Matrícula" class="form-control input-md">
+						<span id="spanMatriculaVehiculo" class="help-block">Formato no valido. Debe contener 4 números y de 1 a 3 letras</span>
+					</div>
+				</div>
+
+				<!-- Select Basic -->
+				<div class="form-group" id="filaListaMatriculaVehiculo">
+					<label class="col-xs-4 col-md-4 control-label" for="lstVehiculos">Matrícula</label>
+					<div class="col-xs-4 col-md-4">
+						<select id="lstVehiculos" name="lstVehiculos" class="form-control">
+						</select>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group" id="filaPrecioVehiculo">
+					<label class="col-xs-4 col-md-4 control-label" for="txtPrecio">Precio</label>
+					<div class="col-xs-4 col-md-4">
+						<input id="txtPrecio" name="txtPrecio" type="text" placeholder="Precio" class="form-control input-md">
+						<span id="spanPrecioVehiculo" class="help-block">Formato no valido. Debe contener un número mayor de 0 ej: 14.122</span>
+					</div>
+				</div>
+
+				<!-- Select Basic -->
+				<div class="form-group" id="filaCategoriaVehiculo">
+					<label class="col-xs-4 col-md-4 control-label" for="lstCategoria">Categoría</label>
+					<div class="col-xs-4 col-md-4">
+						<select id="lstCategoria" name="lstCategoria" class="form-control">
+						</select>
+					</div>
+				</div>
+
+				<!-- Multiple Checkboxes -->
+				<div class="form-group" id="filaExtrasVehiculo">
+					<label class="col-xs-4 col-md-4 control-label">Extras</label>
+					<div class="col-xs-4 col-md-4" id="lstExtras">
+					</div>
+				</div>
+
+				<!-- Button (Double) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-8 col-md-8">
+						<input type="button" id="aceptarGestionVehiculo" name="btnAltaVehiculo" value="Aceptar" class="btn btn-primary"/>
+						<input type="button" id="volver" name="btnVolverVehiculo" value="Volver" class="btn btn-default"/>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<form class="form-horizontal" name="frmGestionarCompraVenta" id="frmGestionarCompraVenta">
+			<fieldset>
+				<!-- Form Name -->
+				<legend>Gestionar Compra / Venta</legend>
+				
+				<!-- Multiple Radios (inline) -->
+				<div class="form-group">
+					<label class="col-xs-4 col-md-4 control-label"></label>
+					<div class="col-xs-4 col-md-4">
+						<label class="radio-inline">
+							<input type="radio" name="radiosGE" id="compra" value="compra">
+							Compra
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radiosGE" id="venta" value="venta">
+							Venta
+						</label>                 
+					</div>
+					<br>
+				</div>
+
+				<div id="frmAltaCompra">
+					<form class="form-horizontal" name="frmAltaCompra" >
+						<fieldset>
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="lstProveedores">Proveedor:</label>
+								<div class="col-xs-4 col-md-4">
+									<select id="lstProveedores" name="lstProveedores" title="Proveedor" class="form-control">
+									</select>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="lstVehiculosC">Vehículo:</label>
+								<div class="col-xs-4 col-md-4">
+									<select id="lstVehiculosC" name="lstVehiculosC" title="Vehículo" class="form-control">
+									</select>
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="txtIdCompra">ID Transacción:</label>
+								<div class="col-xs-4 col-md-4">
+									<input id="txtIdCompra" name="txtIdCompra" type="text" placeholder="ID Transacción" class="form-control input-md">
+									<span id="spanIdCompra" class="help-block">Formato no valido. Debe contener al menos 1 número</span>
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="txtImporteCompra">Importe:</label>
+								<div class="col-xs-4 col-md-4">
+									<input id="txtImporteCompra" name="txtImporteCompra" type="text" placeholder="Importe" class="form-control input-md">
+									<span id="spanImporteCompra" class="help-block">Formato no valido. Debe contener un número mayor de 0 ej: 14.122</span>
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="fechaCompra">Fecha:</label>
+								<div class="col-xs-4 col-md-4">
+									<input id="fechaCompra" name="fechaCompra" type="text" placeholder="dd/mm/aaaa" class="form-control input-md">
+									<span id="spanFechaCompra" class="help-block">Formato no valido. La fecha debe estar en el formato especificado dd/mm/aaaa</span>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="lstEmpleadosC">Empleado:</label>
+								<div class="col-xs-4 col-md-4">
+									<select id="lstEmpleadosC" name="lstEmpleadosC" title="Empleado" class="form-control">
+									</select>
+								</div>
+							</div>
+
+							<!-- Button (Double) -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label"></label>
+								<div class="col-xs-8 col-md-8">
+									<input type="button" id="aceptarAltaCompra" name="btnAltaCompra" value="Aceptar" class="btn btn-primary"/>
+									<input type="button" id="volver" name="btnVolverCompra" value="Volver" class="btn btn-default"/>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+
+				<div id="frmAltaVenta">
+					<form class="form-horizontal" name="frmAltaVenta" >
+						<fieldset>
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="lstClientes">Cliente:</label>
+								<div class="col-xs-4 col-md-4">
+									<select id="lstClientes" name="lstClientes" title="Cliente" class="form-control">
+									</select>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="lstVehiculosV">Vehículo:</label>
+								<div class="col-xs-4 col-md-4">
+									<select id="lstVehiculosV" name="lstVehiculosV" title="Vehículo" class="form-control">
+									</select>
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="txtIdVenta">ID Transacción:</label>
+								<div class="col-xs-4 col-md-4">
+									<input id="txtIdVenta" name="txtIdVenta" type="text" placeholder="ID Transacción" class="form-control input-md">
+									<span id="spanIdVenta" class="help-block">Formato no valido. Debe contener al menos 1 número</span>
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="txtImporteVenta">Importe:</label>
+								<div class="col-xs-4 col-md-4">
+									<input id="txtImporteVenta" name="txtImporteVenta" type="text" placeholder="Importe" class="form-control input-md">
+									<span id="spanImporteVenta" class="help-block">Formato no valido. Debe contener un número mayor de 0 ej: 14.122</span>
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="fechaVenta">Fecha:</label>
+								<div class="col-xs-4 col-md-4">
+									<input id="fechaVenta" name="fechaVenta" type="text" placeholder="dd/mm/aaaa" class="form-control input-md">
+									<span id="spanFechaVenta" class="help-block">Formato no valido. La fecha debe estar en el formato especificado dd/mm/aaaa</span>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label" for="lstEmpleadosV">Empleado:</label>
+								<div class="col-xs-4 col-md-4">
+									<select id="lstEmpleadosV" name="lstEmpleadosV" title="Empleado" class="form-control">
+									</select>
+								</div>
+							</div>
+
+							<!-- Button (Double) -->
+							<div class="form-group">
+								<label class="col-xs-4 col-md-4 control-label"></label>
+								<div class="col-xs-8 col-md-8">
+									<input type="button" id="aceptarAltaVenta" name="btnAltaVenta" value="Aceptar" class="btn btn-primary"/>
+									<input type="button" id="volver" name="btnVolverVenta" value="Volver" class="btn btn-default"/>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>
+
+	<!--##############################   script    ##############################-->
+
+	<script type="text/javascript" src="js/objetos.js"></script>
+	<script type="text/javascript" src="js/principal.js"></script>
+	<script type="text/javascript">
+		$("#fechaCompra").datepicker({
+			altFormat: "yy-mm-dd"
+		});
+		$("#fechaVenta").datepicker({
+			altFormat: "yy-mm-dd"
+		});
+
+		document.getElementById("formularios").addEventListener("click",mostrarCompraVenta,false);
+		//document.getElementById("frmGestionarEmpleados").addEventListener("click",mostrarCompraVenta,false);
+		document.getElementById("frmGestionarProveedores").addEventListener("click",mostrarCompraVenta,false);
+		document.getElementById("frmGestionarClientes").addEventListener("click",mostrarCompraVenta,false);
+		document.getElementById("frmGestionarVehiculos").addEventListener("click",mostrarCompraVenta,false);
+		document.getElementById("frmGestionarCompraVenta").addEventListener("click",mostrarCompraVenta,false);
+
+		// Cargar Categorias
+		function cargarCategoriasCombo(){
+			var catSelect = document.getElementById("lstCategoria");
+			//catSelect.innerHTML = "";
+			while(catSelect.firstChild){
+				catSelect.removeChild(catSelect.firstChild);
+			}
+
+			$.get("php/getCategorias.php",function(data){
+				var res = data;
+				for(var i = 0; i < res.length; i++){
+					var categoria = res[i];
+
+					var newOption = document.createElement("option");
+					newOption.text = categoria['NOMBRE'];
+					newOption.value = categoria['ID_CATEGORIA'];
+
+					catSelect.appendChild(newOption);
+				}
+			});
+		}
+
+		// Cargar Proveedores
+		function cargarProveedoresCombo(){
+			var provSelect = document.getElementById("lstProveedores");
+			//catSelect.innerHTML = "";
+			while(provSelect.firstChild){
+				provSelect.removeChild(provSelect.firstChild);
+			}
+
+			$.get("php/getProveedores.php",function(data){
+				var res = data;
+				for(var i = 0; i < res.length; i++){
+					var proveedor = res[i];
+
+					var newOption = document.createElement("option");
+					newOption.text = proveedor['NOMBRE'] + " " + proveedor['APELLIDO'] + " - " + proveedor['NOMBRE_EMPRESA'];
+					newOption.value = proveedor['ID_PERSONA'];
+
+					provSelect.appendChild(newOption);
+				}
+			});
+		}
+
+		// Cargar Clientes
+		function cargarClientesCombo(){
+			var cliSelect = document.getElementById("lstClientes");
+			//cliSelect.innerHTML = "";
+			while(cliSelect.firstChild){
+				cliSelect.removeChild(cliSelect.firstChild);
+			}
+
+			$.get("php/getClientes.php",function(data){
+				var res = data;
+				for(var i = 0; i < res.length; i++){
+					var cliente = res[i];
+
+					var newOption = document.createElement("option");
+					newOption.text = cliente['NOMBRE'] + " " + cliente['APELLIDO'];
+					newOption.value = cliente['ID_PERSONA'];
+
+					cliSelect.appendChild(newOption);
+				}
+			});
+		}
+
+		// Cargar Vehículos
+		function cargarVehiculosCombo(nombreCombo){
+			var vehSelect = document.getElementById(nombreCombo);
+			//vehSelect.innerHTML = "";
+			while(vehSelect.firstChild){
+				vehSelect.removeChild(vehSelect.firstChild);
+			}
+
+			$.get("php/getVehiculos.php",function(data){
+				var res = data;
+				for(var i = 0; i < res.length; i++){
+					var vehiculo = res[i];
+
+					var newOption = document.createElement("option");
+					newOption.text = vehiculo['MATRICULA'];
+					newOption.value = vehiculo['MATRICULA'];
+
+					vehSelect.appendChild(newOption);
+				}
+			});
+		}
+
+		// Cargar Empleados
+		function cargarEmpleadosCombo(nombreCombo, tipoEmp){
+			var empSelect = document.getElementById(nombreCombo);
+			//empSelect.innerHTML = "";
+			while(empSelect.firstChild){
+				empSelect.removeChild(empSelect.firstChild);
+			}
+
+			$.get("php/getEmpleados.php",function(data){
+				var res = data;
+
+				var listaEmpleados = res.filter(function (emp){
+					return emp['TIPO_EMPLEADO'] == tipoEmp;
+				});
+
+				for(var i = 0; i < listaEmpleados.length; i++){
+					var empleado = listaEmpleados[i];
+
+					var newOption = document.createElement("option");
+					newOption.text = empleado['ID_PERSONA'] + " (" + empleado['TIPO_EMPLEADO'] + ")";
+					newOption.value = empleado['ID_PERSONA'];
+
+					empSelect.appendChild(newOption);
+				}
+			});
+		}
+
+		// Cargar checkbox Extras
+		function cargarListaExtras(){
+			var listaExtras = document.getElementById("lstExtras");
+			while(listaExtras.firstChild){
+				listaExtras.removeChild(listaExtras.firstChild);
+			}
+
+			$.get("php/getExtras.php",function(data){
+				var res = data;
+				for(var i = 0; i < res.length; i++){
+					var extra = res[i];
+
+					var divCheckbox = document.createElement("div");
+					divCheckbox.setAttribute("class", "checkbox");
+
+					var label = document.createElement("label");
+					label.setAttribute("for", "checkExtras-"+i);
+
+					divCheckbox.appendChild(label);
+
+					var input = document.createElement("input");
+					input.setAttribute("type", "checkbox");
+					input.setAttribute("name", "checkExtras[]");
+					input.setAttribute("id", "checkExtras-"+i);
+					input.setAttribute("value", extra['ID_EXTRA']);
+
+					label.appendChild(input);
+
+					var span = document.createElement("span");
+					span.textContent = extra['NOMBRE'];
+					span.setAttribute("title", extra['DESCRIPCION']);
+
+					label.appendChild(span);
+
+					listaExtras.appendChild(divCheckbox);
+				}
+			});
+		}
+
+		function recargarFormularios(){
+			cargarCategoriasCombo();
+			cargarListaExtras();
+			cargarProveedoresCombo();
+			cargarClientesCombo();
+			cargarVehiculosCombo("lstVehiculos");
+			cargarVehiculosCombo("lstVehiculosC");
+			cargarVehiculosCombo("lstVehiculosV");
+			cargarEmpleadosCombo("lstEmpleadosC", "Director Compras");
+			cargarEmpleadosCombo("lstEmpleadosV", "Comercial Ventas");
+
+			/*for(var i = 0; i < document.forms.length; i++) {
+				document.forms[i].reset();
+			}*/
+
+			//reiniciarValidacionesVehiculos();
+		}
+		/*
+		function inicializar(){
+			document.getElementById("lstVehiculos").addEventListener("change", rellenarModificarVehiculo);
+			document.getElementById("modificarGestionVehiculos").addEventListener("click", rellenarModificarVehiculo);
+
+			document.getElementById("lstVehiculosC").addEventListener("change", rellenarImporteC);
+			document.getElementById("lstVehiculosV").addEventListener("change", rellenarImporteV);
+
+			document.getElementById("compra").addEventListener("click", rellenarImporteC);
+			document.getElementById("venta").addEventListener("click", rellenarImporteV);
+		}
+
+		function rellenarImporteC(){
+			var matricula = document.getElementById("lstVehiculosC").value;
+			$.ajax({
+				type: "POST",
+				url: "php/getPrecioVehiculo.php",
+				data: $("#frmGestionarCompraVenta").serialize(),
+				success: function(data){
+					document.getElementById("txtImporteCompra").value = data[0]['PRECIO'];
+				}
+			});
+		}
+
+		function rellenarImporteV(){
+			var matricula = document.getElementById("lstVehiculosV").value;
+			var oVehiculo = oConcesionario.getVehiculo(matricula);
+
+			document.getElementById("txtImporteVenta").value = oVehiculo.precio;
+		}
+
+		function rellenarModificarVehiculo(){
+			var matricula = document.getElementById("lstVehiculos").value;
+			var oVehiculo = oConcesionario.getVehiculo(matricula);
+
+			document.getElementById("txtPrecio").value = oVehiculo.precio;
+			document.getElementById("lstCategoria").value = oVehiculo.categoria.idCategoria;
+
+			//var extras = [];
+
+			for(var i = 0; i < oConcesionario.extras.length; i++) {
+				document.getElementById("checkExtras-" + i).checked = oVehiculo.extras.contains(oConcesionario.extras[i]);
+			}
+		}
+		*/
+		window.addEventListener("load", function(){recargarFormularios();/*inicializar();*/});
+	</script>
+</body>
+</html>

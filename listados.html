@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Listado</title>
+	<link type="text/css" rel="stylesheet" href="css/estilos.css"/>
+	<!-- Enlaces a bootstrap -->
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css"/>
+	<script src="lib/js/jquery-3.1.1.min.js"></script>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<!-- Enlaces a jQuery -->
+	<script src="lib/js/jquery-3.1.1.min.js"></script>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<link rel="stylesheet" href="./lib/js/jquery-ui/jquery-ui.min.css"/>
+</head>
+<body>
+	<div id="Listados" style="margin-top: 2%;">
+		<form class="form-horizontal" name="frmListados" id="frmListados">
+			<fieldset>
+				<!-- Form Name -->
+				<legend>Listados</legend>
+
+				<!-- Multiple Radios (inline) -->
+				<div class="form-group">
+					<label class="col-xs-3 col-md-3 control-label"></label>
+					<div class="col-xs-8 col-md-6" id="radios">
+						<label class="radio-inline">
+							<input type="radio" name="radioListados" id="rbEmpleados" value="rbEmpleados">Empleados
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioListados" id="rbProveedores" value="rbProveedores">Proveedores
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioListados" id="rbClientes" value="rbClientes">Clientes
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioListados" id="rbVehiculos" value="rbVehiculos">Vehículos
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioListados" id="rbCompras" value="rbCompras">Compras
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioListados" id="rbVentas" value="rbVentas">Ventas
+						</label>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+	<div id="Empleados"></div>
+	<div id="Proveedores"></div>
+	<div id="Clientes"></div>
+	<div id="Vehiculos"></div>
+	<div id="Compras"></div>
+	<div id="Ventas"></div>
+		
+	
+	<script type="text/javascript">
+		var ventanaPadre = window.opener;
+		var radios = document.getElementById("radios");
+		radios.addEventListener("click",mostrarListado,false);
+		var tipoListado="";
+		
+		function ocultarListados()
+		{
+		document.getElementById("Empleados").style.display = "none";
+		document.getElementById("Proveedores").style.display = "none";
+		document.getElementById("Clientes").style.display = "none";
+		document.getElementById("Vehiculos").style.display = "none";
+		document.getElementById("Compras").style.display = "none";
+		document.getElementById("Ventas").style.display = "none";
+		}
+
+		//Eventos según radio en los listados
+		function mostrarListado(oEvento){
+			var oE = oEvento || window.event;
+
+			// <> de undefined
+			if (oE.target.value){
+				var opcion = oE.target.value;
+
+				switch(opcion){
+					case 'rbEmpleados':
+						tipoListado="Empleados";
+						ocultarListados();
+						procesoListado();
+						document.getElementById("Empleados").style.display="block";
+						break;
+
+					case 'rbProveedores':
+						tipoListado="Proveedores";
+						procesoListado();
+						ocultarListados();
+						document.getElementById("Proveedores").style.display="block";
+						break;
+
+					case 'rbClientes':
+						tipoListado="Clientes";
+						procesoListado();
+						ocultarListados();
+						document.getElementById("Clientes").style.display="block";
+						break;
+
+					case 'rbVehiculos':
+						tipoListado="Vehiculos";
+						procesoListado();
+						ocultarListados();
+						document.getElementById("Vehiculos").style.display="block";
+						break;
+
+					case 'rbCompras':
+					    tipoListado="Compras";
+						procesoListado();
+						ocultarListados();
+						document.getElementById("Compras").style.display="block";
+						break;
+
+					case 'rbVentas':
+						tipoListado="Ventas";
+						procesoListado();
+						ocultarListados();
+						document.getElementById("Ventas").style.display="block";
+						break;
+				}
+			}
+		}
+
+		/* VARIABLES PARA AJAX */
+		var oAjaxListado = null;
+
+		function procesoListado(){
+			var sURL="";
+			switch(tipoListado){
+				case 'Empleados':
+					sURL = encodeURI("php/listadoEmpleados.php");
+				break;
+
+				case 'Proveedores':
+					 sURL = encodeURI("php/listadoProveedores.php");
+				break;
+
+				case 'Clientes':
+					 sURL = encodeURI("php/listadoClientes.php");
+				break;
+
+				case 'Vehiculos':
+					 sURL = encodeURI("php/listadoVehiculos.php");
+				break;
+
+				case 'Compras':
+					 sURL = encodeURI("php/listadoCompras.php");
+				break;
+
+				case 'Ventas':
+					 sURL = encodeURI("php/listadoVentas.php");
+				break;
+			}
+
+			llamadaAjaxListado(sURL);
+		}
+
+		function objetoXHR() {
+			if (window.XMLHttpRequest) {
+				return new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				var versionesIE = new Array('Msxml2.XMLHTTP.5.0', 'Msxml2.XMLHTTP.4.0', 'Msxml2.XMLHTTP.3.0', 'Msxml2.XMLHTTP', 'Microsoft.XMLHTTP');
+				for (var i = 0; i < versionesIE.length; i++) {
+					try {
+						return new ActiveXObject(versionesIE[i]);
+					} catch (errorControlado) {} //Capturamos el error,
+				}
+			}
+			throw new Error("No se pudo crear el objeto XMLHttpRequest");
+		}
+
+		function llamadaAjaxListado(sURL){
+
+			oAjaxListado = objetoXHR();
+
+			oAjaxListado.open("GET",sURL,true);
+
+			oAjaxListado.onreadystatechange = respuestaListado;
+
+			oAjaxListado.send(null);
+		}
+
+		function respuestaListado(){
+			if(oAjaxListado.readyState == 4 && oAjaxListado.status ==200){
+				//Recojo el documento XML en variable global
+				var oXML = oAjaxListado.responseXML;
+
+				switch(tipoListado){
+					case 'Empleados':
+					procesaEmpleadoXML(oXML);
+					break;
+
+					case 'Proveedores':
+					procesaProveedorXML(oXML);
+					break;
+
+					case 'Clientes':
+					procesaClienteXML(oXML);
+					break;
+
+					case 'Vehiculos':
+					procesaVehiculoXML(oXML);
+					break;
+
+					case 'Compras':
+					procesaCompraXML(oXML);
+					break;
+
+					case 'Ventas':
+					procesaVentaXML(oXML);
+					break;
+				}
+			}
+		}
+
+		function procesaEmpleadoXML(oXML){
+			//borrar tabla si habia
+			$("#listado").remove();
+
+			var jqTabla = $('<table class="table" id="listado">');
+
+			var oEmpleados = oXML.getElementsByTagName("empleado");
+			$('<tr><th>ID EMPLEADO</th><th>TIPO_EMPLEADO</th>').appendTo(jqTabla);
+			for(var i=0;i<oEmpleados.length;i++){
+				$('<tr>' +
+					'<td>'+oEmpleados[i].getElementsByTagName('idempleado')[0].textContent+'</td>' +
+					'<td>'+oEmpleados[i].getElementsByTagName('tipoempleado')[0].textContent+'</td>' +
+				   '</tr>').appendTo(jqTabla);
+			}
+
+			jqTabla.appendTo("#Empleados");
+		}
+
+		function procesaProveedorXML(oXML){
+			//borrar tabla si habia
+			$("#listado").remove();
+
+			var jqTabla = $('<table class="table" id="listado">');
+
+			var oProveedor = oXML.getElementsByTagName("proveedor");
+			$('<tr><th>ID PROVEEDOR</th><th>NOMBRE</th><th>APELLIDO</th><th>MOVIL</th><th>NOMBRE EMPRESA</th></tr>').appendTo(jqTabla);
+			for(var i=0;i<oProveedor.length;i++){
+				$('<tr>' +
+					'<td>'+oProveedor[i].getElementsByTagName('idproveedor')[0].textContent+'</td>' +
+					'<td>'+oProveedor[i].getElementsByTagName('nombre')[0].textContent+'</td>' +
+					'<td>'+oProveedor[i].getElementsByTagName('apellido')[0].textContent+'</td>' +
+					'<td>'+oProveedor[i].getElementsByTagName('movil')[0].textContent+'</td>' +
+					'<td>'+oProveedor[i].getElementsByTagName('nombreempresa')[0].textContent+'</td>' +
+					'</tr>').appendTo(jqTabla);
+			}
+
+			jqTabla.appendTo("#Proveedores");
+		}
+
+		function procesaClienteXML(oXML){
+			//borrar tabla si habia
+			$("#listado").remove();
+
+			var jqTabla = $('<table class="table" id="listado">');
+
+			var oCliente = oXML.getElementsByTagName("cliente");
+			$('<tr><th>ID CLIENTE</th><th>NOMBRE</th><th>APELLIDO</th><th>MOVIL</th></tr>').appendTo(jqTabla);
+			for(var i=0;i<oCliente.length;i++){
+				$('<tr>' +
+					'<td>'+oCliente[i].getElementsByTagName('idcliente')[0].textContent+'</td>' +
+					'<td>'+oCliente[i].getElementsByTagName('nombre')[0].textContent+'</td>' +
+					'<td>'+oCliente[i].getElementsByTagName('apellido')[0].textContent+'</td>' +
+					'<td>'+oCliente[i].getElementsByTagName('movil')[0].textContent+'</td>' +
+				   '</tr>').appendTo(jqTabla);
+			}
+
+			jqTabla.appendTo("#Clientes");
+		}
+
+		function procesaVehiculoXML(oXML){
+			//borrar tabla si habia
+			$("#listado").remove();
+
+			var jqTabla = $('<table class="table" id="listado">');
+
+			var oVehiculo = oXML.getElementsByTagName("coche");
+			$('<tr><th>MATRICULA</th><th>PRECIO(€)</th><th>CATEGORIA</th>').appendTo(jqTabla);
+			for(var i=0;i<oVehiculo.length;i++){
+				$('<tr>' +
+					'<td>'+oVehiculo[i].getElementsByTagName('matricula')[0].textContent+'</td>' +
+					'<td>'+oVehiculo[i].getElementsByTagName('precio')[0].textContent+'</td>' +
+					'<td>'+oVehiculo[i].getElementsByTagName('categoria')[0].textContent+'</td>' +
+				   '</tr>').appendTo(jqTabla);
+			}
+
+			jqTabla.appendTo("#Vehiculos");
+		}
+
+		function procesaCompraXML(oXML){
+			//borrar tabla si habia
+			$("#listado").remove();
+
+			var jqTabla = $('<table class="table" id="listado">');
+
+			var oCompra = oXML.getElementsByTagName("compra");
+			$('<tr><th>ID TRANSACCION</th><th>IMPORTE(€)</th><th>FECHA</th><th>ID PERSONA</th><th>TIPO EMPLEADO</th><th>MATRICULA</th></tr>').appendTo(jqTabla);
+			for(var i=0;i<oCompra.length;i++){
+				$('<tr>' +
+					'<td>'+oCompra[i].getElementsByTagName('idtransaccion')[0].textContent+'</td>' +
+					'<td>'+oCompra[i].getElementsByTagName('importe')[0].textContent+'</td>' +
+					'<td>'+oCompra[i].getElementsByTagName('fecha')[0].textContent+'</td>' +
+					'<td>'+oCompra[i].getElementsByTagName('idpersona')[0].textContent+'</td>' +
+					'<td>'+oCompra[i].getElementsByTagName('tipoempleado')[0].textContent+'</td>' +
+					'<td>'+oCompra[i].getElementsByTagName('matricula')[0].textContent+'</td>' +
+				   '</tr>').appendTo(jqTabla);
+			}
+
+			jqTabla.appendTo("#Compras");
+		}
+
+		function procesaVentaXML(oXML){
+			//borrar tabla si habia
+			$("#listado").remove();
+
+			var jqTabla = $('<table class="table" id="listado">');
+
+			var oVenta = oXML.getElementsByTagName("venta");
+			$('<tr><th>ID TRANSACCION</th><th>IMPORTE(€)</th><th>FECHA</th><th>ID PERSONA</th><th>TIPO EMPLEADO</th><th>MATRICULA</th></tr>').appendTo(jqTabla);
+			for(var i=0;i<oVenta.length;i++){
+				$('<tr>' +
+					'<td>'+oVenta[i].getElementsByTagName('idtransaccion')[0].textContent+'</td>' +
+					'<td>'+oVenta[i].getElementsByTagName('importe')[0].textContent+'</td>' +
+					'<td>'+oVenta[i].getElementsByTagName('fecha')[0].textContent+'</td>' +
+					'<td>'+oVenta[i].getElementsByTagName('idpersona')[0].textContent+'</td>' +
+					'<td>'+oVenta[i].getElementsByTagName('tipoempleado')[0].textContent+'</td>' +
+					'<td>'+oVenta[i].getElementsByTagName('matricula')[0].textContent+'</td>' +
+				   '</tr>').appendTo(jqTabla);
+			}
+
+			jqTabla.appendTo("#Ventas");
+		}
+	</script>	
+</body>
+</html>

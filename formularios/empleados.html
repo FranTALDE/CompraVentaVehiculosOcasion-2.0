@@ -1,0 +1,55 @@
+<div id="divfrmGestionarEmpleados">
+	<form class="form-horizontal" name="frmGestionarEmpleados" id="frmGestionarEmpleados">
+				<fieldset>
+					<!-- Form Name -->
+					<legend>Gestionar Empleados</legend>
+
+					<!-- Multiple Radios (inline) -->
+					<div class="form-group">
+						<label class="col-xs-4 col-md-4 control-label"></label>
+						<div class="col-xs-4 col-md-4">
+							<label class="radio-inline">
+								<input type="radio" name="radioGestionEmpleados" id="altaGestionEmpleados" value="altaGestionEmpleados" checked="checked">
+								Alta
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioGestionEmpleados" id="bajaGestionEmpleados" value="bajaGestionEmpleados">
+								Baja
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioGestionEmpleados" id="modificarGestionEmpleados" value="modificarGestionEmpleados">
+								Modificar
+							</label>
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-xs-4 col-md-4 control-label" for="textIdEmpleado">ID Empleado:</label>
+						<div class="col-xs-4 col-md-4">
+							<input id="textIdEmpleado" name="textIdEmpleado" type="text" placeholder="ID Empleado" class="form-control input-md">
+							<span id="spanIdEmpleado" class="help-block">Formato no valido. Debe tener este formato 28679345L</span>
+						</div>
+					</div>
+
+					<!-- Multiple Radios -->
+					<div class="form-group" id="radiosTipoEmpleado">
+						<label class="col-xs-4 col-md-4 control-label"></label>
+						<div class="col-xs-4 col-md-4">
+							<div class="radio">
+								<label>
+									<input type="radio" name="tipoEmpleado" id="tipoEmpleado0" value="Director Compras" checked="checked">Director Compras
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="tipoEmpleado" id="tipoEmpleado1" value="Comercial Ventas">Comercial Ventas
+								</label>
+							</div>
+						</div>
+					</div>
+					
+			</fieldset>								
+			</form>
+</div>	
+	
